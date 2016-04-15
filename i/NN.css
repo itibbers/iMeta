@@ -1,0 +1,56 @@
+/*
+* 难难 Basic CSS
+* Time:
+* http://nncode.github.com
+*/
+body{margin: 0;font: 1.2em "微软雅黑",Arial;line-height: 1.5em;color: #222;background: #f5f5f5}
+a{text-decoration: none}
+ul{margin: 0;padding: 0;list-style: none}
+input,textarea,button{outline: none}
+img{border: 0}
+h1,h2{font-weight: 400}
+/***************/
+@keyframes blur{
+	0%{filter:blur(5px);-webkit-filter:blur(5px);}
+	100%{filter:blur(0);-webkit-filter:blur(0);}
+}
+header{margin-top: 3em;text-align: center}
+header h1{font-size: 3em}
+header h1 a{color: #222;font-weight: 200}
+#nav ul li{display: inline-block}
+#nav ul li a{margin: 0 .4em;padding: .6em 1em;border-radius: 10%;font-weight: 300;color: #222}
+#nav ul li .a{border-bottom: 1px solid #233;border-bottom-left-radius: 0;border-bottom-right-radius: 0;animation:blur .2s ease-in-out;-webkit-animation:blur .2s ease-in-out;}
+nav .search input{width: 90px;height: 32px;border: 1px solid #ccc;border-radius: 30px;padding: 0 10px;position: relative;top: -3px;right: 0;transition: all .3s ease-in-out;-webkit-transition: all .3s ease-in-out;}
+nav .search input:focus{width: 160px}
+nav .search input:focus ~ button{background: #f64}
+nav .search button{width: 30px;height: 30px;border: none;border-radius: 50%;background: #ccc;position: relative;top: -2px;right: 37px;vertical-align: middle;transition: all .3s ease-in-out;-webkit-transition: all .3s ease-in-out;}
+
+.loading{margin: 2em;font-size: 3em;text-align: center;}
+
+#m{width: 800px;margin: 0 auto}
+.p{margin: 2em 0;padding: 1.2em;border-radius: .15em;background: #fff;box-shadow: 0 0 1em #ccc}
+.p .title,.p .meta{text-align: center}
+.p .title{margin-bottom: .1em}
+.p .meta{display: block;font-size: 0.8em;color: #666}
+.p .text{white-space: pre-wrap}
+.p .text:first-letter{font-size: 2em}
+.quote{padding: 3em}
+.quote .author{display: block;text-align: right}
+
+footer{margin: 3em 0}
+footer p{text-align: center}
+footer p a{color: #666}
+footer p a img{width: 1.5em;border-radius: 50%;vertical-align: bottom}
+
+@media(max-width:860px){
+  #m{width: 100%}
+  #nav ul li a{margin: 0;padding: .6em .9em}
+}
+@media(max-width:670px){
+  #nav ul li a{padding: .6em .4em}
+}
+
+::-webkit-scrollbar{width: 8px}
+::-webkit-scrollbar-button{height: 0px}
+::-webkit-scrollbar-thumb{background: #BBB;border-radius: 10px}
+::selection{background: rgba(0,149,255,0.1)}
