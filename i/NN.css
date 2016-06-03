@@ -25,7 +25,7 @@ nav .search input:focus{width: 160px}
 nav .search input:focus ~ button{background: #f64}
 nav .search button{width: 30px;height: 30px;border: none;border-radius: 50%;background: #ccc;position: relative;top: -2px;right: 37px;vertical-align: middle;transition: all .3s ease-in-out;-webkit-transition: all .3s ease-in-out;}
 
-.loading{margin: 2em;font-size: 3em;text-align: center;}
+.loading{ display: block; margin: 100px auto; width: 56px; height: 21px; background: url('loading.gif') no-repeat; }
 
 #m{width: 800px;margin: 0 auto}
 .p{margin: 2em 0;padding: 1.2em;border-radius: .15em;background: #fff;box-shadow: 0 0 1em #ccc}

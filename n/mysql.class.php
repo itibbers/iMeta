@@ -1,6 +1,5 @@
 <?php 
-
-class SaeMysql{
+class NNMysql{
 
 	/*运行Sql语句,不返回结果集*/
 	public function runSql($sql){
@@ -69,7 +68,6 @@ class SaeMysql{
 	 * 同mysql_affected_rows函数
 	 *
 	 * @return int 成功返回行数,失败时返回-1
-	 * @author Elmer Zhang
 	 */
 	public function affectedRows(){
 		return mysql_affected_rows($this->db());
@@ -78,7 +76,7 @@ class SaeMysql{
 	/**
 	 * 同mysql_insert_id函数
 	 *
-	 * @return int 成功返回last_id,失败时返回false
+	 * @return int 成功返回last_id,失败时返回0
 	 */
 	public function lastId(){
 		return mysql_insert_id($this->db());
@@ -97,16 +95,25 @@ class SaeMysql{
 	/**
 	 *  同mysql_real_escape_string
 	 *
-	 * @param string $str 
 	 * @return string 
 	 */
 	public function escape($str){
 		return addslashes($str);//$this->db(),
+		// 去除斜杠
+		if (get_magic_quotes_gpc())
+		  {
+		  $value = stripslashes($value);
+		  }
+		// 如果不是数字则加引号
+		if (!is_numeric($value))
+		  {
+		  $value = "'" . mysql_real_escape_string($value) . "'";
+		  }
+		return $value;
 	}
  
 	/**
 	 * 返回错误码
-	 * 
 	 *
 	 * @return int 
 	 */
@@ -123,19 +130,18 @@ class SaeMysql{
 		return $this->error;
 	}
 
+	private function save_error($db){
+		$this->error=mysql_error($db);
+		$this->errno=mysql_errno($db);
+	}
+
 	private function connect(){
 		$host='localhost';
-		if(defined('MYSQL_DATABASE')){
-			$dbname=MYSQL_DATABASE;
-			$user=MYSQL_USERNAME;
-			$pwd=MYSQL_PASSWORD;
-		}else{
-			$dbname='imeta';
-			$user='root';
-			$pwd='123';
-		}
+		$user='root';
+		$pwd='jxn';
+		$dbname='imeta';
 
-		$db=mysql_connect($host,$user,$pwd,true);
+		$db=mysql_connect($host,$user,$pwd,true) or die("Mysql Error.");
 		mysql_select_db($dbname,$db);
 		mysql_set_charset('utf8',$db);
 
@@ -145,13 +151,9 @@ class SaeMysql{
 	private function db(){
 		if(!isset($this->db)||!mysql_ping($this->db))
 			$this->db=$this->connect();
-
 		return $this->db;
 	}
 
-	private function save_error($db){
-		$this->error=mysql_error($db);
-		$this->errno=mysql_errno($db);
-	}
 }
-$sql=new SaeMysql();
+$sql=new NNMysql();
+?>

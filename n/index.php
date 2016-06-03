@@ -7,10 +7,7 @@ function err($i){
 	exit(json_encode(array('error'=>$i)));
 }
 
-if(defined('SAE_MYSQL_DB'))
-	$sql=new SaeMysql();
-else
-	require 'mysql.class.php';
+require_once 'mysql.class.php';
 
 if(preg_match('/^(?:I|C|P|L)$/',$_GET['t']))
 	require 'n.'.strtolower($_GET['t']).'.php';
